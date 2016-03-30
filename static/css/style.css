@@ -201,7 +201,25 @@ footer > .row > p{
   cursor: pointer;
   background-color: #010101;
 }
-.morecarabas, .moremalva, .moreburatino, .moreche{
+.morecarabas{
+  color: #010101;
+  border: 1px solid #010101;
+  padding:5px;
+  border-radius: 10px;
+}
+.moremalva{
+  color: #010101;
+  border: 1px solid #010101;
+  padding:5px;
+  border-radius: 10px;
+}
+.moreburatino{
+  color: #010101;
+  border: 1px solid #010101;
+  padding:5px;
+  border-radius: 10px;
+}
+.moreche{
   color: #010101;
   border: 1px solid #010101;
   padding:5px;
