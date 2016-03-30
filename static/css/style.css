@@ -230,3 +230,16 @@ footer > .row > p{
   background-color: #010101;
   text-decoration: none;
 }
+.curspre{
+  text-align: center;
+}
+.cursmenu{
+  text-align: center;
+}
+.jumbotron h1, .jumbotron h2{
+  font-family: 'Bookman Old Style', serif;
+}
+.curstext{
+  text-align: center;
+  font-family: 'Lucida Console', Monaco, monospace;
+}
