@@ -1,12 +1,3 @@
-.breadcrumb{
-  text-align:center;
-  background-color:transparent;
-  border-bottom:1px solid #eee;
-  padding-top:12px;
-  padding-bottom:12px;
-  margin-bottom:40px;
-}
-
 nav.navbar.navbar-default{
   margin-bottom:0px;
 }
@@ -93,9 +84,6 @@ nav.navbar.navbar-default{
   cursor:pointer;
 }
 
-.lead{
-  font-size:25px;
-}
 
 .navbar-default .navbar-nav > li > a{
   color:#fff;
