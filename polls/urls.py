@@ -2,11 +2,6 @@ from django.conf.urls import patterns, url
 
 from polls import views
 
-def index(request):
-    latest_question_list = Question.objects.order_by('-pub_date')[:5]
-    output = ', '.join([p.question_text for p in latest_question_list])
-    return HttpResponse(output)
-    
 urlpatterns = patterns('',
     url(r'^$', views.IndexView.as_view(), name='index'),
     url(r'^(?P<pk>\d+)/$', views.DetailView.as_view(), name='detail'),
