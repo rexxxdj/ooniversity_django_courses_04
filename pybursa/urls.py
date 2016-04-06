@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.http import HttpResponse
 from django.shortcuts import render
 
+
 def main(request):
 	return render(request,'index.html')
 
@@ -23,6 +24,6 @@ urlpatterns = patterns('',
     url(r'^student_detail/$', student_detail, name='contact'),
     
     # url(r'^blog/', include('blog.urls')),
-
+    url(r'^polls/', include('polls.urls', namespace="polls")),
     url(r'^admin/', include(admin.site.urls)),
 )
