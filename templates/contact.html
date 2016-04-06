@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 
@@ -7,8 +8,8 @@
 	<link rel="shortcut icon" href="../static/images/logo.png" type="image/x-icon">
 	<meta name="description" content="This site is about the courses ItBursa. Created Ruslan Tokar in the study Python Bursa">
     <title>PyBursa_contact</title>
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body>
@@ -19,16 +20,16 @@
             </div>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="/">Main</a></li>
-                    <li><a href="/contact">Contacts</a></li>
-                    <li><a href="/student_list">Students</a></li>
+                    <li><a href="{% url 'index' %}">Main</a></li>
+                    <li><a href="{% url 'contact' %}">Contacts</a></li>
+                    <li><a href="{% url 'student_list' %}">Students</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 	<ol class="breadcrumb">
-        <li><a href="/"><span>/ Main</span></a></li>
-        <li><a href="/contact"><span>Contacts</span></a></li>
+        <li><a href="{% url 'index' %}"><span>/ Main</span></a></li>
+        <li><a href="{% url 'contact' %}"><span>Contacts</span></a></li>
     </ol>
     <div class="container">
         <div class="row">
@@ -102,8 +103,8 @@
 	<div class="myfoot">
         <p class="mycopy"> PyBursa © 2016 Ruslan Tokar</p>
     </div>
-    <script src="../static/js/jquery.min.js"></script>
-    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
 </body>
 
 </html>
