@@ -15,7 +15,7 @@ nav.navbar.navbar-default{
 
 .reviewer-name{
   margin-right:10px;
-} 
+}
 
 .site-footer{
   padding:20px 0;
