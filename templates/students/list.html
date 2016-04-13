@@ -31,35 +31,34 @@
         <li><a href="{% url 'students:list_view' %}"><span>Students </span></a></li>
     </ol>
     {% block content %}
-    <div class="container">
-        <h1 class="text-nowrap">Список студентов</h1>
-        <div class="table-responsive student-table">
-            <table class="table table-hover">
-                <thead class="headtable">
-                    <tr>
-                        <th>#</th>
-                        <th>Фамилия Имя</th>
-                        <th class="hidden-xs">Адрес</th>
-                        <th>Skype</th>
-                        <th>Курсы</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for x in students %}
-                    <tr>
-                        <td>{{ x.id }}</td>
-                        <td><a class="show" href="{% url 'students:detail' x.id %}">{{x.surname}} {{ x.name }}</a></td>
-                        <td class="hidden-xs">{{ x.address }}</td>
-                        <td>{{ x.skype }}</td>
-                        <td> {% for course in x.courses.all %}
-                            <a href="{% url 'courses:detail' course.id %}">{{ course.name }}<br></a>
-                            {% endfor %}</td>
-                    </tr> 
-                    {% endfor %}
-                </tbody>
-            </table>
+
+  <!-- Default panel contents -->
+
+    <h2 id = "header_table">Список студентов</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <tr>
+                    <th>#</th>
+                    <th>фамилия имя</th>
+                    <th>адрес</th>
+                    <th>skype</th>
+                    <th>курсы</th>
+                </tr>
+                {% for i in students %}
+                <tr>
+                    <td>{{ i.id }}</td>
+                    <td><a href="{% url 'students:detail' i.id %}">{{i.surname}} {{ i.name }}</a></td>
+                    <td>{{ i.address }}</td>
+                    <td>{{ i.skype }}</td>
+                    <td> {% for course in i.courses.all %}
+                        <a href="{% url 'courses:detail' course.id %}">{{ course.name }}<br></a>
+                        {% endfor %}
+                    </td>
+                </tr> 
+                {% endfor %}
+            </table>   
         </div>
-    </div>
+
     {% endblock content %}
     <div class="site-footer">
         <div class="myfoot">
