@@ -3,10 +3,7 @@ from django.db import models
 from courses.models import Course
 
 # Create your models here.
-class Student(models.Model):	
-	class Meta(object):
-		verbose_name_plural = "Студенты"
-			
+class Student(models.Model):
 	name = models.CharField(max_length=200)
 	surname = models.CharField(max_length=200)
 	date_of_birth = models.DateField()
