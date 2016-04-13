@@ -14,7 +14,7 @@ class Lesson(models.Model):
     subject = models.CharField(max_length=200) 
     description = models.TextField() 
     course = models.ForeignKey(Course) 
-    order = models.IntegerField()
+    order = models.PositiveIntegerField()
 
     def __unicode__(self):
     	return self.subject
