@@ -7,13 +7,11 @@ class Lessoninline(admin.TabularInline):
     model = Lesson
     extra = 2
 
-class CourseAdmin(admin.ModelAdmin):
-    fieldsets = [
-        (None,        {'fields': ['name', 'short_description']}),
-        ('More info', {'fields': ['description'], 'classes': ['collapse']})
-    ]
+class CourseAdmin(admin.ModelAdmin):    
     inlines = [Lessoninline]
     list_display = ('name', 'short_description')
+    search_fields = ['name']
+
 
 
 admin.site.register(Course, CourseAdmin)
