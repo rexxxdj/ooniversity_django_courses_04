@@ -17,10 +17,11 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=200)),
                 ('surname', models.CharField(max_length=200)),
-                ('date_of_birth', models.DateTimeField()),
+                ('date_of_birth', models.DateField()),
                 ('email', models.EmailField(max_length=75)),
                 ('phone', models.CharField(max_length=20)),
                 ('address', models.CharField(max_length=255)),
+                ('skype', models.CharField(max_length=35)),
                 ('courses', models.ManyToManyField(to='courses.Course')),
             ],
             options={
