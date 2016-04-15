@@ -327,3 +327,9 @@ a:hover, a:visited, a:focus{
 td a{
   display:block;
 }
+.glyphicon {
+  color: #010101
+}
+.glyphicon:hover {
+  color: blue
+}
