@@ -52,11 +52,11 @@
         <div class="container">
             <h3>Учитель</h3></br>
 
-            <a href="#"><p class="lead">{{ course.coach.usname }}</p></a>
+            <a href="{% url 'coaches:detail' course.coach_id %}"><p class="lead">{{ course.coach.usname }}</p></a>
             <p>{{ course.coach.description }}</p>
 
             <h3>Ассистент</h3>
-            <p class="lead">{{ course.assistant.usname }}</p>
+            <a href="{% url 'coaches:detail' course.assistant_id %}"><p class="lead">{{ course.assistant.usname }}</p></a>
             <p>{{ course.assistant.description }}</p>
         </div>
         <div class="row">
