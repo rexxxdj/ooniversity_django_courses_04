@@ -4,9 +4,6 @@ from coaches.models import Coach
 # Create your models here.
 
 class Course(models.Model):
-    class Meta:
-        verbose_name_plural = "Курсы"
-
     name = models.CharField(max_length=200)
     short_description = models.CharField(max_length=200) 
     description = models.TextField() 
@@ -18,8 +15,6 @@ class Course(models.Model):
 
 
 class Lesson(models.Model):
-    class Meta:
-        verbose_name_plural = "Уроки"
     subject = models.CharField(max_length=200) 
     description = models.TextField() 
     course = models.ForeignKey(Course) 
