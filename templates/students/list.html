@@ -1,72 +1,32 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <link rel="shortcut icon" href="../static/images/logo.png" type="image/x-icon">
-    <meta name="description" content="This site is about the courses ItBursa. Created Ruslan Tokar in the study Python Bursa">
-    <title>{% block title %}Students Course {% endblock title %}</title>
-   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-
-<body>
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header"><a class="navbar-brand navbar-link" href="http://itbursa.com/">itbursa </a>
-                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-            </div>
-            <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="nav navbar-nav">
-                    <li><a href="{% url 'index' %}">Main</a></li>
-                    <li><a href="{% url 'contact' %}">Contacts</a></li>
-                    <li class="active"><a href="{% url 'students:list_view' %}">Students</a></li>
-                </ul>
-            </div>
-        </nav>
-    <ol class="breadcrumb">
-        <li><a href="{% url 'index' %}"><span>/ Main</span></a></li>
-        <li><a href="{% url 'students:list_view' %}"><span>Students </span></a></li>
-    </ol>
-    {% block content %}
-
-  <!-- Default panel contents -->
-
-    <h2 id = "header_table">Список студентов</h2>
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <tr>
-                    <th>#</th>
-                    <th>фамилия имя</th>
-                    <th>адрес</th>
-                    <th>skype</th>
-                    <th>курсы</th>
-                </tr>
-                {% for i in students %}
-                <tr>
-                    <td>{{ i.id }}</td>
-                    <td><a href="{% url 'students:detail' i.id %}">{{i.surname}} {{ i.name }}</a></td>
-                    <td>{{ i.address }}</td>
-                    <td>{{ i.skype }}</td>
-                    <td> {% for course in i.courses.all %}
-                        <a href="{% url 'courses:detail' course.id %}">{{ course.name }}<br></a>
+{% extends "base.html" %}
+% load staticfiles %}
+{% block title %}ItBursa_Students{% endblock%}
+{% block nav_class_students %}active{% endblock %}
+{% block breadcrumb %}<li><a href="{% url 'index' %}"><span>/ Main</span></a></li>
+        <li><a href="{% url 'students:list_view' %}"><span>Students </span></a></li>{% endblock %}
+{% block content %}
+<h2 id = "header_table">Список студентов</h2>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tr>
+            <th>#</th>
+            <th>фамилия имя</th>
+            <th>адрес</th>
+            <th>skype</th>
+            <th>курсы</th>
+        </tr>
+        {% for i in students %}
+        <tr>
+            <td>{{ i.id }}</td>
+                <td><a href="{% url 'students:detail' i.id %}">{{i.surname}} {{ i.name }}</a></td>
+                <td>{{ i.address }}</td>
+                <td>{{ i.skype }}</td>
+                <td> {% for course in i.courses.all %}
+                    <a href="{% url 'courses:detail' course.id %}">{{ course.name }}<br></a>
                         {% endfor %}
-                    </td>
-                </tr> 
-                {% endfor %}
-            </table>   
-        </div>
-
-    {% endblock content %}
-    <div class="site-footer">
-        <div class="myfoot">
-            <p class="mycopy"> PyBursa © 2016 Ruslan Tokar</p>
-        </div>
-    </div>
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-</body>
-
-</html>
+            </td>
+        </tr> 
+        {% endfor %}
+    </table>   
+</div>
+{% endblock content %}

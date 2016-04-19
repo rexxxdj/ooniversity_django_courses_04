@@ -1,97 +1,56 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">	
-	<link rel="shortcut icon" href="{% static 'images/logo.png' %}" type="image/x-icon">
-	<meta name="description" content="This site is about the courses ItBursa. Created Ruslan Tokar in the study Python Bursa">
-    <title>{% block title %}Course {{ course.name }}{% endblock title %}</title>
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-
-<body>
-
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header"><a class="navbar-brand navbar-link" href="http://itbursa.com/">itbursa </a>
-                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-            </div>
-            <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="nav navbar-nav">
-                    <li><a href="{% url 'index' %}">Main</a></li>
-                    <li><a href="{% url 'contact' %}">Contacts</a></li>
-                    <li><a href="{% url 'students:list_view' %}{% block course_students %}?course_id={{ course.id }}{% endblock course_students %}">Students</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    </br>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="page-header">
-                    <h1 class="text-center">{{ course.name }}</h1></div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <p class="lead text-center">{{ course.description }}</p>
-            </div>
-        </div>
-        <hr>
-        </br>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="page-header">
-                    <h2>Преподаватели</h2></div>
-            </div>
-        </div>
-        <div class="container">
-            <h3>Учитель</h3></br>
-
-            <a href="{% url 'coaches:detail' course.coach_id %}"><p class="lead">{{ course.coach.usname }}</p></a>
-            <p>{{ course.coach.description }}</p>
-
-            <h3>Ассистент</h3>
-            <a href="{% url 'coaches:detail' course.assistant_id %}"><p class="lead">{{ course.assistant.usname }}</p></a>
-            <p>{{ course.assistant.description }}</p>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="page-header">
-                    <h2>План курса</h2></div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover table-condensed">
-                        <thead>
-                            <tr>
-                                <th># </th>
-                                <th>Тема </th>
-                                <th>Описание </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for x in lesson %}
-                            <tr>
-                                <td>{{ x.order }}</td>
-                                <td>{{ x.subject }}</td>
-                                <td>{{ x.description }}</td>
-                            </tr>   
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+{% extends "base.html" %}
+% load staticfiles %}
+{% block title %}ItBursa_{{ course.name }}{% endblock%}
+{% block nav_class_index %}active{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="page-header">
+            <h1 class="text-center">{{ course.name }}</h1></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <p class="lead text-center">{{ course.description|truncatechars:32 }}</p>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-md-12">
+            <h2>Преподаватели</h2>
+    </div>
+</div>
+<div class="container">   
+    {% include "coach_include.html" %}
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="page-header">
+            <h2>План курса</h2></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th># </th>
+                        <th>Тема </th>
+                        <th>Описание </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for x in lesson %}
+                    <tr>
+                        <td>{{ x.order }}</td>
+                        <td>{{ x.subject }}</td>
+                        <td>{{ x.description }}</td>
+                    </tr>   
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-</body>
-
-</html>
+</div>
+{% endblock %}

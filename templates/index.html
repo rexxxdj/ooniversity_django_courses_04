@@ -1,94 +1,53 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">	
-	<link rel="shortcut icon" href="{% static 'images/logo.png' %}" type="image/x-icon">
-	<meta name="description" content="This site is about the courses ItBursa. Created Ruslan Tokar in the study Python Bursa">
-    <title>Courses</title>
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-
-<body>
-
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header"><a class="navbar-brand navbar-link" href="http://itbursa.com/">itbursa </a>
-                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-            </div>
-            <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="{% url 'index' %}">Main</a></li>
-                    <li><a href="{% url 'contact' %}">Contacts</a></li>
-                    <li><a href="{% url 'students:list_view' %}">Students</a></li>
-                </ul>
-            </div>
+{% extends "base.html" %}
+% load staticfiles %}
+{% block title %}ItBursa_Main{% endblock%}
+{% block nav_class_index %}active{% endblock %}
+{% block breadcrumb %}<li><a href="{% url 'index' %}"><span>/ Main</span></a></li>{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1 class="text-center">ItBursa </h1></div>
         </div>
-    </nav>
-	<ol class="breadcrumb">
-        <li><a href="{% url 'index' %}"><span>/ Main</span></a></li>
-    </ol>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="page-header">
-                    <h1 class="text-center">ItBursa </h1></div>
-            </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p class="lead text-center">Курсы ItBursa начали работу в 2014 году. Мы специализируемся на «модных» языках программирования. Принципиальное наше отличие от других курсов – максимум практики и жесткая система обязательных домашних заданий. Преподаватели – опытные практикующие разработчики, они помогают участникам в ходе курсов создать реальные проекты и получить практические навыки, применимые к работе. Домашние задания на наших курсах обязательны и их невыполнение приводит к исключению с курсов. Таким образом, мы готовим не просто «слушателей» курсов, а настоящих специалистов, способных создавать пусть простые, но рабочие проекты. </p>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <p class="lead text-center">Курсы ItBursa начали работу в 2014 году. Мы специализируемся на «модных» языках программирования. Принципиальное наше отличие от других курсов – максимум практики и жесткая система обязательных домашних заданий. Преподаватели – опытные
-                    практикующие разработчики, они помогают участникам в ходе курсов создать реальные проекты и получить практические навыки, применимые к работе. Домашние задания на наших курсах обязательны и их невыполнение приводит к исключению с курсов.
-                    Таким образом, мы готовим не просто «слушателей» курсов, а настоящих специалистов, способных создавать пусть простые, но рабочие проекты. </p>
-            </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h2>Наши курсы:</h2></div>
         </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="page-header">
-                    <h2>Наши курсы:</h2></div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover table-condensed">
-                        <thead>
-                            <tr>
-                                <th>Курс </th>
-                                <th>Описание </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for x in courses %}
-                            <tr>
-                                <td><a href="{% url 'courses:detail' x.id %}"><strong>{{ x.name }}</strong></a></td>
-                                <td>{{ x.short_description }}</td>
-                            </tr>   
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Курс </th>
+                            <th>Описание </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for x in courses %}
+                        <tr>
+                            <td><a href="{% url 'courses:detail' x.id %}"><strong>{{ x.name|upper }}</strong></a></td>
+                            <td>{{ x.short_description|title }}</td>
+                        </tr>   
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-    </br>
-    </br>
-
-    <div class="clearfix"></div>
-    <div class = "dierow">
-        <a class="diebtn" href="http://pybursa.com"><strong>Выучись или уйди!!!</strong></a>            
-    </div>
-    <div class="site-footer">
-    	<div class="myfoot">
-            <p class="mycopy"> PyBursa © 2016 Ruslan Tokar</p>
-        </div>
-    </div>
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-</body>
-
-</html>
+</br>
+</br>
+<div class="clearfix"></div>
+<div class = "dierow">
+    <a class="diebtn" href="http://pybursa.com"><strong>Выучись или уйди!!!</strong></a>            
+</div>
+{% endblock %}
