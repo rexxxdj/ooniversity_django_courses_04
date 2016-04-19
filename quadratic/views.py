@@ -1,10 +1,13 @@
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from django.shortcuts import render
-from django.template import RequestContext, loader
 from quadratic.forms import QuadraticForm
 
+
 def quadratic_results(request):
-    numbers = {}
+    """
+    The solution of the quadratic equation
+    """
+    text = {}
     if request.GET:
         form = QuadraticForm(request.GET)
         if form.is_valid():
@@ -15,14 +18,14 @@ def quadratic_results(request):
             if d < 0:
                 result = "Дискриминант меньше нуля, квадратное уравнение не имеет действительных решений."
             elif d == 0:
-                result = "Дискриминант равен нулю, квадратное уравнение имеет один действительный корень: x1 = x2 = %0.1f" % (-b / 2 * a)
+                result = "Дискриминант равен нулю, квадратное уравнение имеет один" \
+                         " действительный корень: x1 = x2 = %0.1f" % (-b / 2 * a)
             else:
                 x1 = (-b + d ** (1/2.0)) / (2 * a)
                 x2 = (-b - d ** (1/2.0)) / (2 * a)
                 result = "Квадратное уравнение имеет два действительных корня: x1 = %0.1f, x2 = %0.1f" % (x1, x2)
-            numbers.update({ 'd' : d, 'result' : result })
+            text.update(dict(d=str(int(d)), result=str(result)))
     else:
         form = QuadraticForm()
-    numbers.update({ 'form' : form })
-
-    return render(request, 'results.html', numbers)
+    text.update(dict(form=form))
+    return render(request, "quadratic/results.html",  text)

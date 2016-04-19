@@ -1,0 +1,14 @@
+
+  <div class="row marketing">
+    <h3 style="text-align: center">Квадратное уравнение a*x*x + b*x + c = 0</h3><br>
+    <div class="container">
+      <form method="get">
+        {{ form.as_p }}
+        <br><input type="submit" value="Решить"/>
+      </form>
+    </div>
+    {% if result %}
+      <p>Дискриминант: {{ d }}</p>
+      <p>{{ result }}</p>
+    {% endif %}
+  </div>
