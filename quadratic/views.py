@@ -2,15 +2,15 @@
 from django.shortcuts import render
 from quadratic.forms import QuadraticForm
 
+
 def quadratic_results(request):
     text = {'error': False}
     if request.GET:
         form = QuadraticForm(request.GET)
         if form.is_valid():
-            #context['error'] = False
-            a = form.cleaned_data.get('a')
-            b = form.cleaned_data.get('b')
-            c = form.cleaned_data.get('c')
+            a = form.cleaned_data['a']
+            b = form.cleaned_data['a']
+            c = form.cleaned_data['a']
             d = b**2 - 4*a*c
             if d < 0:
                 result = "Дискриминант меньше нуля, квадратное уравнение не имеет действительных решений."
