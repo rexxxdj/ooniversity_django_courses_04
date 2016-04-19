@@ -46,7 +46,7 @@ class Validation(object):
             return False
         try:
             self.value_int = int(self.value)
-        except ValueError:
+        except ValueError:            
             self.error_msg = 'коэффициент не целое число'
             return False
 
