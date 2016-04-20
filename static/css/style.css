@@ -72,12 +72,12 @@ nav.navbar.navbar-default{
   font-size:30px;
 }
 
-.btn-link{
+.btn-link {
   color:#010101;
   border:2px solid #010101;
 }
 
-.btn-link:hover{
+.btn-link:hover {
   color:#fff;
   background-color:#010101;
   text-decoration:none;
@@ -332,4 +332,13 @@ td a{
 }
 .glyphicon:hover {
   color: blue
+}
+.btn, .btn-default{
+  background-color: #010101;
+  color: #fff;
+  font-family: 'Bookman Old Style', serif;
+}
+.btn:hover, .btn-default:hover{
+  background-color: #fff;
+  color: #010101;
 }
