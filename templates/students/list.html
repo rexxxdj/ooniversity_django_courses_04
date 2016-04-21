@@ -13,11 +13,6 @@
     {{ message }}
     {% endfor %}  
 </div>
-<!--<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="bg-success"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>-->
 {% endif %}
 <button class="btn btn-default" type="button"><a href="{% url 'students:add' %}">Добавить студента</a></button>
 <h2 id = "header_table">Список студентов</h2>

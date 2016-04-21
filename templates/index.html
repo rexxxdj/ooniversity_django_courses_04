@@ -4,6 +4,14 @@
 {% block nav_class_index %}active{% endblock %}
 {% block breadcrumb %}<li><a href="{% url 'index' %}"><span>/ Main</span></a></li>{% endblock %}
 {% block content %}
+{% if messages %}
+</br>
+<div class="alert alert-success" role="alert">
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}  
+</div>
+{% endif %}
     <div class="row">
         <div class="col-md-12">
             <div class="page-header">
@@ -22,6 +30,7 @@
                 <h2>Наши курсы:</h2></div>
         </div>
     </div>
+    <button class="btn btn-default" type="button"><a href="{% url 'courses:add' %}">Добавить курс</a></button>
     <div class="row">
         <div class="col-md-12">
             <div class="table-responsive">
@@ -37,7 +46,17 @@
                         <tr>
                             <td><a href="{% url 'courses:detail' x.id %}"><strong>{{ x.name|upper }}</strong></a></td>
                             <td>{{ x.short_description|title }}</td>
-                        </tr>   
+                            <td>
+                                <button class="btn btn-default" type="button">
+                                    <a href="{% url 'courses:edit' x.id %}">Изменить</a>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="btn btn-default" type="button">
+                                    <a href="{% url 'courses:remove' x.id %}">Удалить</a>                    
+                                </button>
+                            </td>
+                        </tr>                           
                         {% endfor %}
                     </tbody>
                 </table>
