@@ -57,7 +57,7 @@ class CourseUpdateView(UpdateView):
 
     def get_success_url(self):
         pk = self.kwargs['pk']
-        return reverse('courses:detail', kwargs={'pk': pk})
+        return reverse('courses:edit', kwargs={'pk': pk})
 
 
 class CourseDeleteView(DeleteView):
