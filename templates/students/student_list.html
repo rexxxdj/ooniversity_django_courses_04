@@ -2,8 +2,17 @@
 % load staticfiles %}
 {% block title %}ItBursa_Students{% endblock%}
 {% block nav_class_students %}active{% endblock %}
-{% block breadcrumb %}<li><a href="{% url 'index' %}"><span>/ Main</span></a></li>
-<li><a href="{% url 'students:list_view' %}"><span>Students </span></a></li>
+{% block breadcrumb %}
+<li>
+    <a href="{% url 'index' %}">
+        <span>/ Main</span>
+    </a>
+</li>
+<li>
+    <a href="{% url 'students:list_view' %}">
+        <span>Students </span>
+    </a>
+</li>
 {% endblock %}
 {% block content %}
 {% if messages %}
@@ -14,7 +23,10 @@
     {% endfor %}  
 </div>
 {% endif %}
-<button class="btn btn-default" type="button"><a href="{% url 'students:add' %}">Добавить студента</a></button>
+<button class="btn btn-default" 
+        type="button">
+    <a href="{% url 'students:add' %}">Добавить студента</a>
+</button>
 <h2 id = "header_table">Список студентов</h2>
 <div class="table-responsive">
     <table class="table table-striped">
@@ -26,24 +38,26 @@
             <th>курсы</th>
             <th></th><th></th>
         </tr>
-        {% for i in students %}
+        {% for st in object_list %}
         <tr>
-            <td>{{ i.id }}</td>
-            <td><a href="{% url 'students:detail' i.id %}">{{i.surname}} {{ i.name }}</a></td>
-            <td class="hidden-xs hidden-sm">{{ i.address }}</td>
-            <td class="hidden-xs">{{ i.skype }}</td>
-            <td> {% for course in i.courses.all %}
-                <a href="{% url 'courses:detail' course.id %}">{{ course.name }}<br></a>
+            <td>{{ st.id }}</td>
+            <td>
+                <a href="{% url 'students:detail' st.id %}">{{st.surname}} {{ st.name }}</a>
+            </td>
+            <td class="hidden-xs hidden-sm">{{ st.address }}</td>
+            <td class="hidden-xs">{{ st.skype }}</td>
+            <td> {% for course in st.courses.all %}
+                <a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a>                
                 {% endfor %}
             </td>
             <td>
                 <button class="btn btn-default" type="button">
-                    <a href="{% url 'students:edit' i.id %}">Изменить</a>
+                    <a href="{% url 'students:edit' st.id %}">Изменить</a>
                 </button>
             </td>
             <td>
                 <button class="btn btn-default" type="button">
-                    <a href="{% url 'students:remove' i.id %}">Удалить</a>                    
+                    <a href="{% url 'students:remove' st.id %}">Удалить</a>                    
                 </button>
             </td>
         </tr> 

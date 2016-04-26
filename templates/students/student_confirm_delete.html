@@ -3,12 +3,22 @@
 {% block title %}ItBursa_Student_remove{% endblock%}
 {% block nav_class_students %}active{% endblock %}
 {% block breadcrumb %}
-<li><a href="{% url 'index' %}"><span>/ Main</span></a></li>
-<li><a href="{% url 'students:list_view' %}"><span>Students </span></a></li>
+<li>
+	<a href="{% url 'index' %}">
+		<span>/ Main</span>
+	</a>
+</li>
+<li>
+	<a href="{% url 'students:list_view' %}">
+		<span>Students </span>
+	</a>
+</li>
 {% endblock %}
 
 {% block content %}
-<div class="page-header"><h3 class="text-center">Студент {{student.name}} {{student.surname}} будет удален</h3></div>
+<div class="page-header">
+	<h3 class="text-center">Студент {{student.name}} {{student.surname}} будет удален</h3>
+</div>
 <div class="row marketing">
 	<div class="container">
 		<form method="post">
