@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 % load staticfiles %}
-{% block title %}ItBursa_Student_remove{% endblock%}
+{% block title %}{{ title }}{% endblock%}
 {% block nav_class_students %}active{% endblock %}
 {% block breadcrumb %}
 <li>
@@ -23,9 +23,8 @@
 	<div class="container">
 		<form method="post">
 			{% csrf_token %}
-	    	{{ form.as_p }}
 	        <br>
-	        <input type="submit" value="Удалить"/>
+	        <input type="submit" value="Delete"/>
 	    </form>
 	</div>
 </div>
