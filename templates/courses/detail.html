@@ -21,6 +21,7 @@
     <div class="col-md-12">
         <p class="lead text-center">{{ course.description|truncatechars:32 }}</p>
     </div>
+
 </div>
 <hr>
 <div class="row">
@@ -37,7 +38,9 @@
             <h2>План курса</h2></div>
     </div>
 </div>
-<button class="btn btn-default" type="button"><a href="{% url 'courses:add-lesson' course.id %}">Добавить занятие</a></button>
+<button class="btn btn-default" type="button">
+    <a href="{% url 'courses:add-lesson' course.id %}">Добавить занятие</a>
+</button>
 <div class="row">
     <div class="col-md-12">
         <div class="table-responsive">
@@ -50,7 +53,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for x in lesson %}
+                    {% for x in lessons %}
                     <tr>
                         <td>{{ x.order }}</td>
                         <td>{{ x.subject }}</td>
