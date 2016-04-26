@@ -3,5 +3,5 @@ from coaches import views
 
 
 urlpatterns = patterns('',
-    url(r'^(?P<coach_id>\d+)/', views.detail, name='detail'),
+    url(r'^(?P<coach_id>\d*)/$', views.CoachDetailView.as_view(), name='detail'),
 )
