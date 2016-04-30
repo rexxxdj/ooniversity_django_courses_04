@@ -62,6 +62,7 @@
             </td>
         </tr> 
         {% endfor %}
-    </table>   
+    </table> 
+    {% include "include/paginator_include.html" with page=page %}  
 </div>
 {% endblock content %}

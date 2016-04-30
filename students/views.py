@@ -12,6 +12,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 class StudentListView(ListView):
     model = Student
+    paginate_by = 2
+    
 
     def get_context_data(self):
         context = super(StudentListView,self).get_context_data()
