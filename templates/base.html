@@ -36,6 +36,9 @@
                     <li class="{% block nav_class_students %}{% endblock %}">
                         <a href="{% url 'students:list_view' %}?course_id={{ course.id }}">Students</a>
                     </li>
+                    <li class="{% block nav_class_feedback %}{% endblock %}">
+                        <a href="{% url 'feedback' %}">Feedback</a>
+                    </li>
                 </ul>
             </div>
         </div>

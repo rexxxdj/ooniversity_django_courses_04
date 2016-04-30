@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Itbursa Feedback form{% endblock title %}
+{% block nav_class_feedback %}active{% endblock %}
+{% block breadcrumb %}
+<li>
+	<a href="{% url 'index' %}">
+		<span>/ Main</span>
+	</a>	
+</li>
+<li>
+	<a href="{% url 'feedback' %}">
+		<span>Feedback</span>
+	</a>
+</li>
+{% endblock %}
+{% block content %}
+<br>
+{% if messages %}
+</br>
+<div class="alert alert-success" role="alert">
+    {% for message in messages %}
+    	{ message }}
+    {% endfor %}  
+</div>
+{% endif %}
+<br>
+<div class="page-header">
+	<h3 class="text-center">{{ title }}</h3>
+</div>
+<div class="container">
+	<form method="post">
+		{% csrf_token %}          
+		{{ form.as_p }}
+		<input type="submit" value="Send"/>
+	</form>
+</div>
+<br>
+{% endblock content %}
