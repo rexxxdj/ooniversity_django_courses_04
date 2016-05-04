@@ -98,3 +98,35 @@ EMAIL_HOST_USER = 'rexxx'
 EMAIL_HOST_PASSWORD = ''
 
 ADMINS = (("Rexxx", "djrexxx87@gmail.com"),)
+
+LOGGING = {
+    'version': 1,
+    'loggers':
+    {
+        'courses':{
+            'handlers': ['console', 'coursefile'],
+            'level': 'DEBUG',
+        },
+        'students':{
+            'handlers': ['console', 'studentfile'],
+            'level': 'DEBUG',
+        },
+    },
+    'handlers':
+    {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler'
+        },
+        'coursefile':{
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler', 
+            'filename': os.path.join(BASE_DIR,'courses_logger.log'),   
+        },
+        'studentfile':{
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler', 
+            'filename': os.path.join(BASE_DIR,'students_logger.log'),   
+        },
+    },
+}
