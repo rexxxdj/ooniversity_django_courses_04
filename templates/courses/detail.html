@@ -19,7 +19,13 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        <p class="lead text-center">{{ course.description|truncatechars:32 }}</p>
+        <p class="lead text-center">
+            {% if course.description %}
+                {{ course.description|truncatechars:32 }}
+            {% else %}
+                <p>Для курса пока не создано описания</p>   
+            {% endif %}
+        </p>
     </div>
 
 </div>
@@ -30,7 +36,17 @@
     </div>
 </div>
 <div class="container">   
-    {% include "include/coach_include.html" %}
+    {% if course.coach %}
+        {% include "include/coach_include.html" %}
+    {% else %}
+        <p>Преподаватель курса пока не определен</p>
+    {% endif %}
+    {% if course.assistant %}
+        {% include "include/assistant_include.html" %}
+    {% else %}
+        <p>Ассистент курса пока не определен</p>
+    {% endif %}
+    
 </div>
 <div class="row">
     <div class="col-md-12">

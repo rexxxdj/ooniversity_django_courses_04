@@ -1,7 +1,3 @@
 <h3>Учитель</h3></br>
 <a href="{% url 'coaches:detail' course.coach_id %}"><p class="lead">{{ course.coach.usname }}</p></a>
 <p>{{ course.coach.description }}</p>
-
-<h3>Ассистент</h3>
-<a href="{% url 'coaches:detail' course.assistant_id %}"><p class="lead">{{ course.assistant.usname }}</p></a>
-<p>{{ course.assistant.description }}</p>
