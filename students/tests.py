@@ -7,7 +7,7 @@ from students.models import Student
 
 class StudentsListTest(TestCase):
 
-	def test_course_list(self):
+	def test_student_list(self):
 		'''
 		Test student page
 		'''

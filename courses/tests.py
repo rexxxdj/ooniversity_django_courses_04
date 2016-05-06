@@ -16,6 +16,48 @@ class CoursesListTest(TestCase):
 		response = client.get('/')
 		self.assertEqual(response.status_code, 200)
 
+	def test_new_course_count(self):
+		for i in xrange(5):
+			course = Course.objects.create(
+				name = 'Course {}'.format(i+1),
+				short_description = 'Description {}'.format(i+1),
+				)	
+		self.assertEqual(Course.objects.all().count(), 5)
+
+	def test_course_list_name(self):
+		course1 = Course.objects.create(
+			name = 'Python',
+			short_description = 'Web development with Python'
+			)
+		coursenum = 1
+		client = Client()
+		response = client.get('/')
+		self.assertContains(response, course1.name)
+
+	def test_link_add_course(self):
+		response = self.client.get('/')
+		self.assertContains(response, '/courses/add/')	
+
+	def test_link_edit_all_course(self):
+		for i in xrange(5):
+			course = Course.objects.create(
+				name = 'Course {}'.format(i+1),
+				short_description = 'Description {}'.format(i+1),
+				)
+		response = self.client.get('/')	
+		for i in range(1, 5):
+			self.assertContains(response, '/courses/edit/{}/'.format(i))
+
+	def test_link_delete_all_course(self):
+		for i in xrange(5):
+			course = Course.objects.create(
+				name = 'Course {}'.format(i+1),
+				short_description = 'Description {}'.format(i+1),
+				)
+		response = self.client.get('/')	
+		for i in range(1, 5):
+			self.assertContains(response, '/courses/remove/{}/'.format(i))			
+
 
 class CoursesDetailTest(TestCase):
 
