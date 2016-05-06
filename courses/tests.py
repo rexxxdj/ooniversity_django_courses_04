@@ -29,7 +29,6 @@ class CoursesListTest(TestCase):
 			name = 'Python',
 			short_description = 'Web development with Python'
 			)
-		coursenum = 1
 		client = Client()
 		response = client.get('/')
 		self.assertContains(response, course1.name)
