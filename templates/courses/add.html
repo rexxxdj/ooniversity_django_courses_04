@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-% load staticfiles %}
+{% load staticfiles %}
 {% block title %}ItBursa_Course_add{% endblock%}
 {% block nav_class_index %}active{% endblock %}
 {% block breadcrumb %}
@@ -16,7 +16,9 @@
 	<div class="container">
 		<form method="post">
 			{% csrf_token %}
-	    	{{ form.as_p }}
+	    	<div class="form-group">
+                  {{ form.as_p}}
+                </div>
 	        <br>
 	        <input type="submit" value="Create"/>
 	    </form>
