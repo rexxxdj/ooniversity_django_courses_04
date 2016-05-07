@@ -18,7 +18,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'xt13ltqg&cq=a5dked7(6_5i*oyld74bsklh6#vqg9hpye7ub7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = True
 
@@ -98,44 +98,6 @@ ADMINS = (
             ("Rexxx", "djrexxx87@gmail.com"),
             ("Nikolay", "nikolay.borovenskiy@gmail.com"),
         )
-
-LOGGING = {
-    'version': 1,
-    'loggers':
-    {
-        'courses':{
-            'handlers': ['file_courses'],
-            'level': 'DEBUG',
-        },
-        'students':{
-            'handlers': ['file_students'],
-            'level': 'DEBUG',
-        },
-    },
-    'handlers':
-    {
-        'file_courses':{
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler', 
-            'filename': os.path.join(BASE_DIR,'courses_logger.log'),
-            'formatter': 'simple',
-        },
-        'file_students':{
-            'level': 'WARNING',
-            'class': 'logging.FileHandler', 
-            'filename': os.path.join(BASE_DIR,'students_logger.log'),
-            'formatter': 'verbose',
-        },
-    },
-    'formatters': {
-        'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(funcName)s %(message)s'
-        },
-        'simple': {
-            'format': '%(levelname)s %(message)s'
-        },
-    },
-}
 
 try:
     from local_settings import *
