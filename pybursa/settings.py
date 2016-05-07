@@ -86,18 +86,18 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
 
 EMAIL_HOST = 'localhost'
-
 EMAIL_PORT = 1025
-
-EMAIL_HOST_USER = 'rexxx'
-
+EMAIL_HOST_USER = 'user'
 EMAIL_HOST_PASSWORD = ''
 
-ADMINS = (("Rexxx", "djrexxx87@gmail.com"),)
+
+ADMINS = (
+            ("Rexxx", "djrexxx87@gmail.com"),
+            ("Nikolay", "nikolay.borovenskiy@gmail.com"),
+        )
 
 LOGGING = {
     'version': 1,
@@ -136,3 +136,8 @@ LOGGING = {
         },
     },
 }
+
+try:
+    from local_settings import *
+except ImportError:
+    print "Wartning! Local_settings are not defined!"

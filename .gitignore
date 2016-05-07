@@ -2,3 +2,4 @@
 *.pyc
 *.pyo
 *.log
+local_settings.py
