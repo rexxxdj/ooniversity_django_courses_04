@@ -18,11 +18,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'xt13ltqg&cq=a5dked7(6_5i*oyld74bsklh6#vqg9hpye7ub7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1',]
 
 
 # Application definition
@@ -86,15 +86,58 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
 
 EMAIL_HOST = 'localhost'
-
 EMAIL_PORT = 1025
-
-EMAIL_HOST_USER = 'rexxx'
-
+EMAIL_HOST_USER = 'user'
 EMAIL_HOST_PASSWORD = ''
 
-ADMINS = (("Rexxx", "djrexxx87@gmail.com"),)
+
+ADMINS = (
+            ("Rexxx", "djrexxx87@gmail.com"),
+            ("Nikolay", "nikolay.borovenskiy@gmail.com"),
+        )
+
+LOGGING = {
+    'version': 1,
+    'loggers':
+    {
+        'courses':{
+            'handlers': ['file_courses'],
+            'level': 'DEBUG',
+        },
+        'students':{
+            'handlers': ['file_students'],
+            'level': 'DEBUG',
+        },
+    },
+    'handlers':
+    {
+        'file_courses':{
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler', 
+            'filename': os.path.join(BASE_DIR,'courses_logger.log'),
+            'formatter': 'simple',
+        },
+        'file_students':{
+            'level': 'WARNING',
+            'class': 'logging.FileHandler', 
+            'filename': os.path.join(BASE_DIR,'students_logger.log'),
+            'formatter': 'verbose',
+        },
+    },
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(funcName)s %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+}
+
+try:
+    from local_settings import *
+except ImportError:
+    print "Wartning! Local_settings are not defined!"

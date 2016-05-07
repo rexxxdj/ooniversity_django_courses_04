@@ -1,20 +1,9 @@
 {% extends "base.html" %}
 % load staticfiles %}
 {% block title %}ItBursa_Students{% endblock%}
-{% block nav_class_students %}active{% endblock %}
-{% block breadcrumb %}
-<li>
-    <a href="{% url 'index' %}">
-        <span>/ Main</span>
-    </a>
-</li>
-<li>
-    <a href="{% url 'students:list_view' %}">
-        <span>Students </span>
-    </a>
-</li>
-{% endblock %}
+{% block nav_class_students %}activated{% endblock %}
 {% block content %}
+<div class="container">
 {% if messages %}
 </br>
 <div class="alert alert-success" role="alert">
@@ -23,19 +12,21 @@
     {% endfor %}  
 </div>
 {% endif %}
-<button class="btn btn-default" 
-        type="button">
-    <a href="{% url 'students:add' %}">Добавить студента</a>
-</button>
-<h2 id = "header_table">Список студентов</h2>
+</br></br></br></br></br></br>
+<div class="row">
+        <a class="add btn btn-info btn-md " href="{% url 'students:add' %}">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add new student
+        </a>
+    </div>  
+<h2 id = "header_table">Student list</h2>
 <div class="table-responsive">
     <table class="table table-striped">
         <tr>
             <th>#</th>
-            <th>фамилия имя</th>
-            <th class="hidden-xs hidden-sm">адрес</th>
-            <th class="hidden-xs">skype</th>
-            <th>курсы</th>
+            <th>Surname Name</th>
+            <th class="hidden-xs hidden-sm">Address</th>
+            <th class="hidden-xs">Skype</th>
+            <th>Courses</th>
             <th></th><th></th>
         </tr>
         {% for st in object_list %}
@@ -47,22 +38,23 @@
             <td class="hidden-xs hidden-sm">{{ st.address }}</td>
             <td class="hidden-xs">{{ st.skype }}</td>
             <td> {% for course in st.courses.all %}
-                <a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a>                
+                <a href="{% url 'courses:detail' course.id %}">{{ course.name }}</br></a>                
                 {% endfor %}
             </td>
             <td>
-                <button class="btn btn-default" type="button">
-                    <a href="{% url 'students:edit' st.id %}">Изменить</a>
-                </button>
+                <a class="edit btn btn-primary btn-md " href="{% url 'students:edit' st.id %}">
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit
+                </a>
             </td>
             <td>
-                <button class="btn btn-default" type="button">
-                    <a href="{% url 'students:remove' st.id %}">Удалить</a>                    
-                </button>
+                <a class="del btn btn-danger btn-md " href="{% url 'students:remove' st.id %}">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete
+                </a>
             </td>
         </tr> 
         {% endfor %}
     </table> 
     {% include "include/paginator_include.html" with page=page %}  
+</div>
 </div>
 {% endblock content %}

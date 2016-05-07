@@ -2,30 +2,106 @@
 % load staticfiles %}
 {% block title %}ItBursa_Student_add{% endblock%}
 {% block nav_class_students %}active{% endblock %}
-{% block breadcrumb %}
-<li>
-	<a href="{% url 'index' %}">
-		<span>/ Main</span>
-	</a>
-</li>
-<li>
-	<a href="{% url 'students:list_view' %}">
-		<span>Students </span>
-	</a>
-</li>
-{% endblock %}
-
 {% block content %}
-<div class="page-header"><h3 class="text-center">{{ title }}</h3></div>
-<div class="row marketing">
-	<div class="container">
-		<form method="post">
-			{% csrf_token %}
-	    	{{ form.as_p }}
-	        <br>
-	        <input type="submit" value="Сonfirm"/>
-	    </form>
+<section class="mbr-section mbr-section--relative mbr-section--fixed-size mbr-parallax-background" id="form1-11" style="background-image: url('/static/images/illustration-background.jpg');">    
+    <div class="mbr-section__container mbr-section__container--std-padding container" style="padding-top: 93px; padding-bottom: 93px;">
+    	<div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2" data-form-type="formoid">
+                        <div class="mbr-header mbr-header--center mbr-header--std-padding">
+                        	</br>
+                            <h2 class="mbr-header__text">{{ title|upper }}</h2>
+                        </div>
+                        <form method="post">
+							{% csrf_token %}
+							{% for field in form %}
+								<div class="form-group">
+									{{ field }}
+								</div>
+								</br>
+							{% endfor %}
+					    	<!--{{ form.as_p }}-->
+					        <br>
+					        <div class="mbr-buttons mbr-buttons--right">
+                              <button type="submit" class="mbr-buttons__btn btn btn-lg btn-primary">SEND
+                              </button>
+                            </div>
+					    </form>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-</div>
-</br>
+</section>
+
+
+<section class="mbr-section mbr-section--relative mbr-section--fixed-size mbr-parallax-background" id="form1-11" style="background-image: url('/static/images/illustration-background.jpg');">    
+    <div class="mbr-section__container mbr-section__container--std-padding container" style="padding-top: 93px; padding-bottom: 93px;">
+	    
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2" data-form-type="formoid">
+                        <div class="mbr-header mbr-header--center mbr-header--std-padding">
+                            <h2 class="mbr-header__text">{{ title|upper }}</h2>
+                        </div>
+                        <form method="post">
+                          {% csrf_token %} 
+                          {% for field in form %}
+
+                            {% if field.name == 'name' %}                            
+                              <div class="form-group">
+                                <input type="text" class="form-control" name="name" required="" placeholder="{{field.value}}" data-form-field="Name">
+                              </div> 
+                            {% endif %}
+                            {% if field.name == 'surname' %}
+                              <div class="form-group">
+                                <input type="text" class="form-control" name="surname" required="" placeholder="{{field.value}}" data-form-field="Surname">
+                              </div> 
+                            {% endif %}
+                            {% if field.name == 'date_of_birth' %}
+                              <div class="form-group">
+                                <input type="text" class="form-control" name="date_of_birth" required="" placeholder="{{field.value}}" data-form-field="date_of_birth">
+                              </div>
+                            {% endif %}
+                            {% if field.name == 'email' %}
+                              <div class="form-group">
+                                <input type="email" class="form-control" name="email" required="" placeholder="{{field.value}}" data-form-field="Email">
+                              </div>
+                            {% endif %}
+                            {% if field.name == 'phone' %}
+                              <div class="form-group">
+                                <input type="phone" class="form-control" name="phone" required="" placeholder="{{field.value}}" data-form-field="Phone">
+                              </div>
+                            {% endif %}
+                            {% if field.name == 'address' %}
+                              <div class="form-group">
+                                <input type="text" class="form-control" name="address" required="" placeholder="{{field.value}}" data-form-field="Address">
+                              </div>
+                            {% endif %}
+                            {% if field.name == 'skype' %}
+                              <div class="form-group">
+                                <input type="text" class="form-control" name="skype" required="" placeholder="{{field.value}}" data-form-field="Skype">
+                              </div>
+                            {% endif %}
+                            {% if field.name == 'courses' %}
+                              <div class="form-group">
+                                <input type="text" class="form-control" name="courses" required="" placeholder="{{field.value}}" data-form-field="courses">
+                              </div>
+                            {% endif %}
+                          {% endfor %}  
+                          </br>
+                            <div class="mbr-buttons mbr-buttons--right">
+                              <button type="submit" class="mbr-buttons__btn btn btn-lg btn-primary">SEND
+                              </button>
+                            </div>
+                            
+                        </form>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}

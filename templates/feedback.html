@@ -1,39 +1,44 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-{% block title %}Itbursa Feedback form{% endblock title %}
-{% block nav_class_feedback %}active{% endblock %}
-{% block breadcrumb %}
-<li>
-	<a href="{% url 'index' %}">
-		<span>/ Main</span>
-	</a>	
-</li>
-<li>
-	<a href="{% url 'feedback' %}">
-		<span>Feedback</span>
-	</a>
-</li>
-{% endblock %}
+{% block title %}ItBursa_Feedback{% endblock%}
+{% block nav_class_feedback %}activated{% endblock %}
+{% block transparent %}mbr-navbar--transparent{% endblock %} 
 {% block content %}
-<br>
-{% if messages %}
+
+<section class="mbr-section mbr-section--relative mbr-section--fixed-size mbr-parallax-background" id="form1-11" style="background-image: url({% static 'images/it-security-lg1-1900x700-c-1900x700-13.jpg' %});">
+    
+    <div class="mbr-section__container mbr-section__container--std-padding container" style="padding-top: 93px; padding-bottom: 93px;">
+    {% if messages %}
 </br>
 <div class="alert alert-success" role="alert">
     {% for message in messages %}
-    	{{ message }}
+      {{ message }}
     {% endfor %}  
 </div>
 {% endif %}
-<br>
-<div class="page-header">
-	<h3 class="text-center">{{ title }}</h3>
-</div>
-<div class="container">
-	<form method="post">
-		{% csrf_token %}          
-		{{ form.as_p }}
-		<input type="submit" value="Send"/>
-	</form>
-</div>
-<br>
-{% endblock content %}
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2" data-form-type="formoid">
+
+                        <div class="mbr-header mbr-header--center mbr-header--std-padding">
+                            <h2 class="mbr-header__text">CONTACT FORM</h2>
+                        </div>
+                        <form method="post">
+                          {% csrf_token %} 
+                            <div class="form-group">
+                              {{ form.as_p}}
+                            </div>
+                          </br>
+                            <div class="mbr-buttons mbr-buttons--right">
+                              <button type="submit" class="mbr-buttons__btn btn btn-lg btn-primary">SEND
+                              </button>
+                            </div>
+                        </form>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

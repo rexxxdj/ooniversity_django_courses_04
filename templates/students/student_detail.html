@@ -1,22 +1,10 @@
 {% extends "base.html" %}
 % load staticfiles %}
 {% block title %}ItBursa_{{ student.name }}_{{ student.surname }}{% endblock%}
-{% block nav_class_students %}active{% endblock %}
-{% block breadcrumb %}
-<li>
-    <a href="{% url 'index' %}">
-        <span>/ Main</span>
-    </a>
-</li>
-<li>
-    <a href="{% url 'students:list_view' %}">
-        <span>Students </span>
-    </a>
-</li>
-<li><span>Student details</span></li>
-{% endblock %}
-
+{% block nav_class_students %}activated{% endblock %}
 {% block content %}
+<div class="container">
+</br></br></br></br></br>
 <div class="row">
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
         <h2>{{ student.name }} {{ student.surname}}</h2>
@@ -35,11 +23,11 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="active">Дата рождения</td>
+                            <td class="active">Date of birth</td>
                             <td>{{ student.date_of_birth }}</td>
                         </tr>
                         <tr>
-                            <td class="active">Адрес</td>
+                            <td class="active">Address</td>
                             <td>{{ student.address }}</td>
                         </tr>
                         <tr>
@@ -67,84 +55,5 @@
         </div>
     </div>
 </div>
-{% endblock%}
-{% block grade%}
-<div class="container">
-    <div class="col-md-10">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead class="headtable">
-                            <tr>
-                                <th>Course </th>
-                                <th>Week </th>
-                                <th>Control Type</th>
-                                <th>Grade </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td rowspan="7">PY101 Введение в Python</td>
-                                <td rowspan="3">Week 1</td>
-                                <td>Tests </td>
-                                <td>99% </td>
-                            </tr>
-                            <tr>
-                                <td>Problem Task №1</td>
-                                <td>100% </td>
-                            </tr>
-                                <tr>
-                                    <td>Problem Task №2 </td>
-                                    <td>100% </td>
-                                </tr>
-                                <tr>
-                                    <td rowspan="2">Week 2</td>
-                                    <td>Tests </td>
-                                    <td>100% </td>
-                                </tr>
-                                <tr>
-                                    <td>Problem Task №1 </td>
-                                    <td>100% </td>
-                                </tr>
-                                <tr>
-                                    <td rowspan="2">Week 3</td>
-                                    <td>Tests </td>
-                                    <td>100% </td>
-                                </tr>
-                                <tr>
-                                    <td>Problem Task №1 </td>
-                                    <td>100% </td>
-                                </tr>
-                                <tr>
-                                    <td rowspan="5">DJ101 Web разработка на Python/Django</td>
-                                    <td rowspan="3">Week 1</td>
-                                    <td>Tests </td>
-                                    <td>100% </td>
-                                </tr>
-                                <tr>
-                                    <td>Problem Task №1 </td>
-                                    <td>100% </td>
-                                </tr>
-                                <tr>
-                                    <td>Problem Task №2</td>
-                                    <td>100%</td>
-                                </tr>
-                                <tr>
-                                    <td rowspan="2">Week 2</td>
-                                    <td>Tests </td>
-                                    <td>100% </td>
-                                </tr>
-                                <tr>
-                                    <td>Problem Task №1 </td>
-                                    <td>100% </td>
-                                </tr>
-                            </tbody>
-                        <caption>Performance </caption>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
-{% endblock %}
+{% endblock%}

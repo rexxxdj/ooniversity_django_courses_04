@@ -1,19 +1,37 @@
-<div class="pagination"> 
-  {% if page_obj.has_previous %}
-    <li>
-      <a href="?{% if request.GET.course_id %}course_id={{ request.GET.course_id }}&{% endif %}page={{ page_obj.previous_page_number }}">
-        << previous
-      </a>
-    </li>
-  {% endif %}
-    <li>
-      <a>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a>
-    </li>
-    {% if page_obj.has_next %}
-      <li>
-        <a href="?{% if request.GET.course_id %}course_id={{ request.GET.course_id }}&{% endif %}page={{ page_obj.next_page_number }}">
-          next >>
-        </a>
-      </li>
-    {% endif %}
+<div class="container">
+  <div class="row paginator">
+    <nav>
+      <ul class="pagination  pagination-sm">
+      {% if page_obj.has_previous %}
+        <li>
+          <a href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;prev</span>
+          </a>
+        </li>
+      {% endif %}
+      {% for number in paginator.page_range %}
+        {% if page_obj.number == forloop.counter %}
+          <li class="active">
+            <a href="?page={{ forloop.counter }}">{{ forloop.counter }}
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+        {% else %}
+          <li>
+            <a href="?page={{ forloop.counter }}">{{ forloop.counter }}
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+      {% if page_obj.has_next %}
+        <li>
+          <a href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+            <span aria-hidden="true">next&raquo;</span>
+          </a>
+        </li>
+      {% endif %}
+      </ul>
+    </nav>
+  </div>
 </div>

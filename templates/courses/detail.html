@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 % load staticfiles %}
 {% block title %}ItBursa_{{ course.name }}{% endblock%}
-{% block nav_class_index %}active{% endblock %}
+{% block nav_class_index %}activated{% endblock %}
 {% block content %}
 {% if messages %}
 </br>
@@ -11,36 +11,57 @@
     {% endfor %}  
 </div>
 {% endif %}
+<div class="container">
+</br></br></br></br>
 <div class="row">
     <div class="col-md-12">
         <div class="page-header">
-            <h1 class="text-center">{{ course.name }}</h1></div>
+            <h1 class="text-center">{{ course.name }}</h1>
+        </div>
     </div>
 </div>
 <div class="row">
     <div class="col-md-12">
-        <p class="lead text-center">{{ course.description|truncatechars:32 }}</p>
+        <p class="lead text-center">
+            {% if course.description %}
+                {{ course.description|truncatechars:32 }}
+            {% else %}
+                <p>Для курса пока не создано описания</p>   
+            {% endif %}
+        </p>
     </div>
-
 </div>
 <hr>
 <div class="row">
     <div class="col-md-12">
-            <h2>Преподаватели</h2>
+        <h2>Преподаватели Курса</h2>
     </div>
 </div>
-<div class="container">   
-    {% include "include/coach_include.html" %}
+<div class="container"> 
+    {% if course.coach %}
+        {% include "include/coach_include.html" %}
+    {% else %}
+        <p>Преподаватель курса пока не определен</p>
+    {% endif %}
+    {% if course.assistant %}
+        {% include "include/assistant_include.html" %}
+    {% else %}
+        <p>Ассистент курса пока не определен</p>
+    {% endif %}
 </div>
 <div class="row">
     <div class="col-md-12">
         <div class="page-header">
-            <h2>План курса</h2></div>
+            <h2>План курса</h2>
+        </div>
     </div>
 </div>
-<button class="btn btn-default" type="button">
-    <a href="{% url 'courses:add-lesson' course.id %}">Добавить занятие</a>
-</button>
+<div class="row">
+    <a class="add btn btn-info btn-md " href="{% url 'courses:add-lesson' course.id %}">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add new lesson
+    </a>
+</div> 
+</br>
 <div class="row">
     <div class="col-md-12">
         <div class="table-responsive">
@@ -56,7 +77,7 @@
                     {% for x in lessons %}
                     <tr>
                         <td>{{ x.order }}</td>
-                        <td>{{ x.subject }}</td>
+                        <td><strong>{{ x.subject|upper }}</strong></td>
                         <td>{{ x.description }}</td>
                     </tr>   
                     {% endfor %}
@@ -64,5 +85,6 @@
             </table>
         </div>
     </div>
+</div>
 </div>
 {% endblock %}

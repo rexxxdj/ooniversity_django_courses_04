@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import logging
 from courses.models import Course, Lesson
 from forms import CourseModelForm, LessonModelForm
 from django.http import HttpResponseRedirect
@@ -10,12 +11,19 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.base import View
 
 
+logger = logging.getLogger(__name__)
+
+
 class CourseDetailView(DetailView):
     model = Course
     context_object_name = "course"
     template_name = "courses/detail.html"    
 
     def get_context_data(self,**kwargs):
+        logger.debug("Courses detail view has been debugged")
+        logger.info("Logger of courses detail view informs you!")
+        logger.warning("Logger of courses detail view warns you!") 
+        logger.error("Courses detail view went wrong!")
         context = super(CourseDetailView,self).get_context_data(**kwargs)
         context["title"] = "Course detail"
         pk = self.kwargs['pk']
@@ -95,16 +103,3 @@ class LessonCreateView(View):
             return redirect('courses:detail', lesson.course.id)
 
         return render(request, self.template_name, {'form': form})
-
-        
-#def add_lesson(request,id):
-#    if request.method == 'POST':
-#        form = LessonModelForm(request.POST)
-#        if form.is_valid():
-#            lesson= form.save()
-#            messages.success(request, u'Lesson %s has been successfully added.'%(lesson.subject))
-#            return redirect('courses:detail', lesson.course.id)
-#    else:
-#    	 course=Course.objects.get(pk=id)
-#        form = LessonModelForm(initial = {'course': course})
-#    return render(request, 'courses/add_lesson.html', {'form':form})    
