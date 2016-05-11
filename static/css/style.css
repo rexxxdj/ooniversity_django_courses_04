@@ -1603,27 +1603,6 @@ html {
     padding-bottom: 1px;
 }
 
-.form_input {
-  display: block;
-  width: 100%;
-  padding: 15px 18px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  color: #373737;
-  background-color: #f6f6f6;
-  background-image: none;
-  border: 2px solid #f6f6f6;
-  border-radius: 0px;
-  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  height: 39px;
-  padding: 8px 15px;
-  font-size: 12px;
-  line-height: 1.5;
-  border-radius: 0px;
-}
-
 label {
     color: white;
 }
@@ -1632,4 +1611,95 @@ label {
 }
 #id_message{
     width: 100%;
+}
+.fbgn {
+  background-image: url('../images/it-security.jpg') 
+}
+.coursebgn{
+  background-image: url('../images/book.jpg');
+}
+.studentbgn{
+  background-image: url('../images/student.jpg');
+}
+.teacherbgn{
+  background-image: url('../images/teacher.jpg');
+}
+.mysection {
+  padding-top: 93px; 
+  padding-bottom: 93px;
+}
+.table > tbody > tr > td {
+    border: none;
+}
+.table > tbody > tr > td:hover,.table > tbody > tr:hover {
+    background-color: #252525;
+    color: white;
+}
+.mbr-header__text{
+  font-size: 250%;
+}
+.sttable > tbody > tr > td {
+  color: white;
+  font-size: 20px;
+}
+.headstudent {
+  font-size: 150%;
+  color: white;
+}
+input {
+    color: black;
+}
+textarea {
+    color: black;
+}
+textarea#id_message,
+textarea#id_description {
+    min-height: 200px;
+}
+.header_white {
+  color: white;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+select,
+textarea
+{
+    min-height: 50px;
+    width:100%;
+    max-height:70px;
+    border:1px solid #ccc;
+    margin-bottom:1em;
+    padding:5px 5px;
+    background:white;
+    border-radius: 5px;
+    box-shadow:inset 0 1px 2px rgba(0, 0, 0, 0.2);
+    box-sizing:border-box;
+    color: black;
+}
+input[type="checkbox"]{
+    margin:0 10px 0 0;
+    border:1px dotted #ddd;
+    background:white;
+    box-shadow:inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    color:#ddd;
+}
+input[type="submit"] {
+    width:33%;
+    border:1px solid #ccc;
+    margin-bottom:1em;
+    padding:5px 5px;
+    background: #CCEECC;
+    border-radius: 5px;
+    box-shadow:outset 0 1px 2px rgba(0, 0, 0, 0.2);
+    box-sizing:border-box;
+    -webkit-transition:box-shadow 0.5s;
+}
+input[type="submit"]:hover{
+    background: #BBEEBB;
+}
+input[type="submit"]:focus{
+    outline:0;
 }

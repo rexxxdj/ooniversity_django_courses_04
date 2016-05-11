@@ -1,14 +1,11 @@
 {% extends "base.html" %}
-{% load staticfiles %}
 {% block title %}ItBursa_Feedback{% endblock%}
 {% block nav_class_feedback %}activated{% endblock %}
 {% block transparent %}mbr-navbar--transparent{% endblock %} 
 {% block content %}
-<section class="mbr-box mbr-section mbr-parallax-background" 
-         id="header2-7" 
-         style="background-image: url({% static 'images/it-security-lg1-1900x700-c-1900x700-13.jpg' %});">    
-  <div class="mbr-section__container mbr-section__container--std-padding container" 
-       style="padding-top: 93px; padding-bottom: 93px;">
+<section class="mbr-box mbr-section mbr-parallax-background fbgn" 
+         id="header2-7">    
+  <div class="mbr-section__container mbr-section__container--std-padding container mysection">
     {% if messages %}
       </br> 
       <div class="alert alert-success" role="alert">
@@ -22,13 +19,12 @@
           <div class="row">
             <div class="col-sm-8 col-sm-offset-2" data-form-type="formoid">
               <div class="mbr-header mbr-header--center mbr-header--std-padding">
-                <h2 class="mbr-header__text">CONTACT FORM</h2>
+                <h2 class="mbr-header__text header_white">CONTACT FORM</h2>
               </div>
               <form method="post">
                 {% csrf_token %} 
-                <div class="form-group">
-                  {{ form.as_p}}
-                </div>
+                {{ form.as_p}}
+                
                 </br>
                 <div class="mbr-buttons mbr-buttons--right">
                   <button type="submit" class="mbr-buttons__btn btn btn-lg btn-primary">SEND</button>

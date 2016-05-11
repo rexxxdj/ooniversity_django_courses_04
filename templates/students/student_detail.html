@@ -1,59 +1,66 @@
 {% extends "base.html" %}
-% load staticfiles %}
 {% block title %}ItBursa_{{ student.name }}_{{ student.surname }}{% endblock%}
 {% block nav_class_students %}activated{% endblock %}
+{% block transparent %}mbr-navbar--transparent{% endblock %} 
 {% block content %}
-<div class="container">
-</br></br></br></br></br>
-<div class="row">
-    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-        <h2>{{ student.name }} {{ student.surname}}</h2>
-    </div>
-</div>
-<hr>
-<div class="col-md-8">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="table-responsive">
-                <table class="table table-striped table-hover">
-                    <thead class="headtable">
-                        <tr>
-                            <th colspan="2">Student Card</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="active">Date of birth</td>
-                            <td>{{ student.date_of_birth }}</td>
-                        </tr>
-                        <tr>
-                            <td class="active">Address</td>
-                            <td>{{ student.address }}</td>
-                        </tr>
-                        <tr>
-                            <td class="active">E-mail </td>
-                            <td>{{ student.email }}</td>
-                        </tr>
-                        <tr>
-                            <td class="active">Skype </td>
-                            <td>{{ student.skype }}</td>
-                        </tr>
-                        <tr>
-                            <td>Phone</td>
-                            <td>{{ student.phone }}</td>
-                        </tr>
-                        <tr>
-                            <td>Courses</td>
-                            <td> {% for course in student.courses.all %}
-                                <a href={% url 'courses:detail' course.id %}>{{ course.name }}<br></a>
-                                {% endfor %}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+<section class="mbr-box mbr-section mbr-parallax-background studentbgn " 
+         id="header2-7">    
+    <div class="mbr-section__container mbr-section__container--std-padding container mysection ">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2">
+                        <div class="mbr-header mbr-header--center mbr-header--std-padding">
+                            <h2 class="mbr-header__text header_white">{{ student.name }} {{ student.surname}}</h2>
+                        </div>                                   
+                    </div>
+                </div>  
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-hover sttable tablestudent">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2" class="headstudent">Student Card</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Date of birth</td>
+                                            <td>{{ student.date_of_birth }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td >Address</td>
+                                            <td>{{ student.address }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>E-mail </td>
+                                            <td>{{ student.email }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Skype </td>
+                                            <td>{{ student.skype }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Phone</td>
+                                            <td>{{ student.phone }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Courses</td>
+                                            <td> {% for course in student.courses.all %}
+                                                <a href={% url 'courses:detail' course.id %}>{{ course.name }}<br></a>
+                                                {% endfor %}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>                               
             </div>
         </div>
     </div>
-</div>
-</div>
+</section>
 {% endblock%}

@@ -1,23 +1,33 @@
 {% extends "base.html" %}
-% load staticfiles %}
-{% block title %}ItBursa_Course_add{% endblock%}
-{% block nav_class_index %}active{% endblock %}
-{% block breadcrumb %}
-<li><a href="{% url 'index' %}"><span>/ Main</span></a></li>
-{% endblock %}
-
+{% block title %}ItBursa_add_lesson{% endblock%}
+{% block nav_class_index %}activated{% endblock %}
+{% block transparent %}mbr-navbar--transparent{% endblock %} 
 {% block content %}
-{{course}}
-<div class="page-header"><h3 class="text-center">Создание нового занятия</h3></div>
-<div class="row marketing">
-	<div class="container">
-		<form method="post">
-			{% csrf_token %}
-	    	{{ form.as_p }}
-	        <br>
-	        <input type="submit" value="Создать"/>
-	    </form>
-	</div>
-</div>
-</br>
+
+<section class="mbr-box mbr-section mbr-parallax-background coursebgn" 
+         id="header2-7">    
+  <div class="mbr-section__container mbr-section__container--std-padding container mysection">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="row">
+            <div class="col-sm-8 col-sm-offset-2" data-form-type="formoid">
+              <div class="mbr-header mbr-header--center mbr-header--std-padding">
+                <h2 class="mbr-header__text header_white">Create new lesson</h2>
+              </div>
+              <form method="post">
+                {% csrf_token %} 
+                <div class="form-group">
+                  {{ form.as_p}}
+                </div>
+                </br>
+                <div class="mbr-buttons mbr-buttons--right">
+                  <button type="submit" class="mbr-buttons__btn btn btn-lg btn-primary">CREATE</button>
+                </div>
+              </form>                        
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
 {% endblock %}

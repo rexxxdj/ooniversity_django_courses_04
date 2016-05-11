@@ -1,60 +1,81 @@
 {% extends "base.html" %}
-% load staticfiles %}
 {% block title %}ItBursa_Students{% endblock%}
 {% block nav_class_students %}activated{% endblock %}
+{% block transparent %}mbr-navbar--transparent{% endblock %} 
 {% block content %}
+<section class="mbr-box mbr-section mbr-parallax-background studentbgn"  
+         id="header2-7">
+    <div class="mbr-box__magnet mbr-box__magnet--sm-padding mbr-box__magnet--center-left mbr-after-navbar">        
+        <div class="mbr-box__container mbr-section__container container">
+            <div class="mbr-box mbr-box--stretched">
+                <div class="mbr-box__magnet mbr-box__magnet--center-left">
+                    {% if messages %}
+                        </br>
+                        <div class="alert alert-success" role="alert">
+                            {% for message in messages %}
+                                {{ message }}
+                            {% endfor %}  
+                        </div>
+                    {% endif %}                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section>
+<!-- Section Preview-->
+<!-- Section Students-->
 <div class="container">
-{% if messages %}
-</br>
-<div class="alert alert-success" role="alert">
-    {% for message in messages %}
-    {{ message }}
-    {% endfor %}  
-</div>
-{% endif %}
-</br></br></br></br></br></br>
-<div class="row">
+    <div class="row">
         <a class="add btn btn-info btn-md " href="{% url 'students:add' %}">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add new student
         </a>
-    </div>  
-<h2 id = "header_table">Student list</h2>
-<div class="table-responsive">
-    <table class="table table-striped">
-        <tr>
-            <th>#</th>
-            <th>Surname Name</th>
-            <th class="hidden-xs hidden-sm">Address</th>
-            <th class="hidden-xs">Skype</th>
-            <th>Courses</th>
-            <th></th><th></th>
-        </tr>
-        {% for st in object_list %}
-        <tr>
-            <td>{{ st.id }}</td>
-            <td>
-                <a href="{% url 'students:detail' st.id %}">{{st.surname}} {{ st.name }}</a>
-            </td>
-            <td class="hidden-xs hidden-sm">{{ st.address }}</td>
-            <td class="hidden-xs">{{ st.skype }}</td>
-            <td> {% for course in st.courses.all %}
-                <a href="{% url 'courses:detail' course.id %}">{{ course.name }}</br></a>                
-                {% endfor %}
-            </td>
-            <td>
-                <a class="edit btn btn-primary btn-md " href="{% url 'students:edit' st.id %}">
-                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit
-                </a>
-            </td>
-            <td>
-                <a class="del btn btn-danger btn-md " href="{% url 'students:remove' st.id %}">
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete
-                </a>
-            </td>
-        </tr> 
-        {% endfor %}
-    </table> 
-    {% include "include/paginator_include.html" with page=page %}  
-</div>
+    </div>   
+    <h2 id = "header_table">Student list</h2>
+    <div class="row" id="courses">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Surname Name</th>
+                            <th class="hidden-xs hidden-sm">Address</th>
+                            <th class="hidden-xs">Skype</th>
+                            <th>Courses</th>
+                            <th></th><th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for st in object_list %}
+                        <tr>
+                            <td>{{ st.id }}</td>
+                            <td>
+                                <a href="{% url 'students:detail' st.id %}">{{st.surname}} {{ st.name }}</a>
+                            </td>
+                            <td class="hidden-xs hidden-sm">{{ st.address }}</td>
+                            <td class="hidden-xs">{{ st.skype }}</td>
+                            <td> {% for course in st.courses.all %}
+                                <a href="{% url 'courses:detail' course.id %}">{{ course.name }}</br></a>                
+                                {% endfor %}
+                            </td>
+                            <td>
+                                <a class="edit btn btn-primary btn-md " href="{% url 'students:edit' st.id %}">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit
+                                </a>
+                            </td>
+                            <td>
+                                <a class="del btn btn-danger btn-md " href="{% url 'students:remove' st.id %}">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete
+                                </a>
+                            </td>
+                        </tr> 
+                        {% endfor %}                        
+                    </tbody>                    
+                </table>
+                {% include "include/paginator_include.html" with page=page %} 
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock content %}

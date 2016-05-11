@@ -1,32 +1,37 @@
 {% extends "base.html" %}
-% load staticfiles %}
-{% block title %}{{ title }}{% endblock%}
-{% block nav_class_students %}active{% endblock %}
-{% block breadcrumb %}
-<li>
-	<a href="{% url 'index' %}">
-		<span>/ Main</span>
-	</a>
-</li>
-<li>
-	<a href="{% url 'students:list_view' %}">
-		<span>Students </span>
-	</a>
-</li>
-{% endblock %}
-
+{% block title %}ItBursa_{{ student.name }}_delete{% endblock%}
+{% block nav_class_students %}activated{% endblock %}
+{% block transparent %}mbr-navbar--transparent{% endblock %} 
 {% block content %}
-<div class="page-header">
-	<h3 class="text-center">Студент {{student.name}} {{student.surname}} будет удален</h3>
-</div>
-<div class="row marketing">
-	<div class="container">
-		<form method="post">
-			{% csrf_token %}
-	        <br>
-	        <input type="submit" value="Delete"/>
-	    </form>
-	</div>
-</div>
-</br>
+<section class="mbr-box mbr-section mbr-parallax-background studentbgn" 
+         id="header2-7">    
+	<div class="mbr-section__container mbr-section__container--std-padding container mysection">
+    	{% if messages %}
+    	</br>
+      	<div class="alert alert-success" role="alert">
+        	{% for message in messages %}
+          		{{ message }}
+        	{% endfor %}  
+      	</div>
+    	{% endif %}
+    	<div class="row">
+        	<div class="col-sm-12">
+          	<div class="row">
+            	<div class="col-sm-8 col-sm-offset-2" data-form-type="formoid">
+              		<div class="mbr-header mbr-header--center mbr-header--std-padding">
+                		<h2 class="mbr-header__text header_white">Студент {{student.name}} {{student.surname}} будет удален</h2>
+              		</div>
+	             	<form method="post">
+	                	{% csrf_token %} 
+	                	</br>
+	                	<div class="mbr-buttons mbr-buttons--right">
+	                  		<button type="submit" class="mbr-buttons__btn btn btn-lg btn-primary">DELETE</button>
+	                	</div>
+	              	</form>                        
+            	</div>
+          	</div>
+        </div>
+      </div>
+    </div>
+</section>
 {% endblock %}
